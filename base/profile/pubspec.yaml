@@ -11,6 +11,9 @@ dependencies:
     sdk: flutter
   intl: any
 
+  ui:
+    path: ../../core/ui
+
   locale:
     path: ../../core/locale
 
