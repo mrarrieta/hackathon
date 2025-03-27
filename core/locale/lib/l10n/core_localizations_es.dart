@@ -7,6 +7,9 @@ class CoreLocalizationsEs extends CoreLocalizations {
   CoreLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
+  String get splashError => 'Error al cargar la información';
+
+  @override
   String get loginPageTitle => 'Iniciar sesión';
 
   @override

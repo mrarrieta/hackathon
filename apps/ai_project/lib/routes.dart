@@ -6,19 +6,26 @@ import 'package:login/data/login_view_model.dart';
 import 'package:login/views/login_page.dart';
 import 'package:profile/views/profile_page.dart';
 import 'package:signup/views/signup_screen.dart';
-import 'package:splash/views/splash_screen.dart';
+import 'package:splash/data/splash_api.dart';
+import 'package:splash/data/splash_view_model.dart';
+import 'package:splash/views/splash_page.dart';
 
 class Routes {
 
   static Dio _dio = Dio(BaseOptions(contentType: "application/json"));
   static LoginClient _loginClient = LoginClient(_dio);
+  static SplashClient _splashClient = SplashClient(_dio);
   static LoginViewModel _loginViewmodel = LoginViewModel(_loginClient);
+  static SplashViewModel _splashViewModel = SplashViewModel(_splashClient);
 
   static final router = GoRouter(
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, __) => SplashScreen(() => context.replace('/login')),
+        builder: (context, __) => SplashPage(
+            _splashViewModel,
+                () => context.replace('/login')
+        ),
       ),
       GoRoute(
         path: '/signup',
@@ -31,11 +38,10 @@ class Routes {
       ),
       GoRoute(
         path: '/login',
-        builder: (context, __) =>
-            LoginPage(
-              _loginViewmodel,
-                  () => context.go('/home'),
-            ),
+        builder: (context, __) => LoginPage(
+          _loginViewmodel,
+              () => context.go('/home'),
+        ),
       ),
       GoRoute(
         path: '/home',

@@ -10,13 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   intl: any
-
   locale:
     path: ../../core/locale
-
   icons:
     path: ../../core/icons
-
   url_launcher: ^6.1.10
   webview_flutter: ^3.0.4
   carousel_slider: ^4.2.1

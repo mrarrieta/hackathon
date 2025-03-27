@@ -1,4 +1,6 @@
 {
+  "@_splash": {},
+  "splashError": "Error al cargar la información",
   "@_login": {},
   "loginPageTitle": "Iniciar sesión",
   "loginSuccessful": "Login exitoso!",

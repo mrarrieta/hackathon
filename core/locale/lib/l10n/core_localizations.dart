@@ -93,6 +93,12 @@ abstract class CoreLocalizations {
     Locale('es')
   ];
 
+  /// No description provided for @splashError.
+  ///
+  /// In es, this message translates to:
+  /// **'Error al cargar la información'**
+  String get splashError;
+
   /// No description provided for @loginPageTitle.
   ///
   /// In es, this message translates to:
