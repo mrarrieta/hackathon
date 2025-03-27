@@ -14,9 +14,11 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(context.l10n.loginPageTitle)),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: LoginForm(loginViewModel,onSuccess),
+      body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: LoginForm(loginViewModel,onSuccess),
+          )
       ),
     );
   }
