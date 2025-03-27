@@ -141,6 +141,30 @@ abstract class CoreLocalizations {
   /// **'Requerido'**
   String get required;
 
+  /// No description provided for @homePageTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Bienvenido'**
+  String get homePageTitle;
+
+  /// No description provided for @home.
+  ///
+  /// In es, this message translates to:
+  /// **'Inicio'**
+  String get home;
+
+  /// No description provided for @profile.
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil'**
+  String get profile;
+
+  /// No description provided for @logout.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar sesión'**
+  String get logout;
+
   /// No description provided for @yes.
   ///
   /// In es, this message translates to:

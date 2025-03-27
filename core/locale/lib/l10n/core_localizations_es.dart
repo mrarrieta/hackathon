@@ -31,6 +31,18 @@ class CoreLocalizationsEs extends CoreLocalizations {
   String get required => 'Requerido';
 
   @override
+  String get homePageTitle => 'Bienvenido';
+
+  @override
+  String get home => 'Inicio';
+
+  @override
+  String get profile => 'Perfil';
+
+  @override
+  String get logout => 'Cerrar sesión';
+
+  @override
   String get yes => 'Si';
 
   @override
