@@ -19,47 +19,41 @@ class Routes {
       GoRoute(
         path: '/',
         builder: (context, __) => SplashScreen(() => context.replace('/login')),
-        routes: [
-          GoRoute(
-            path: 'signup',
-            builder: (context, __) =>
-                SignupScreen(
-                      () => context.go('/login'),
-                      () => context.go('/home'),
-                      () => context.go('/profile'),
-                ),
-          ),
-          GoRoute(
-            path: 'login',
-            builder: (context, __) =>
-                LoginPage(
-                  _loginViewmodel,
-                  () => context.go('/home'),
-                ), /*LoginScreen(
-                  () => context.go('/signup'),
+      ),
+      GoRoute(
+        path: '/signup',
+        builder: (context, __) =>
+            SignupScreen(
+                  () => context.go('/login'),
                   () => context.go('/home'),
                   () => context.go('/profile'),
-            ),*/
-          ),
-          GoRoute(
-            path: 'home',
-            builder: (context, __) =>
-                HomeScreen(
-                      () => context.go('/login'),
-                      () => context.go('/signup'),
-                      () => context.go('/profile'),
-                ),
-          ),
-          GoRoute(
-            path: 'profile',
-            builder: (context, __) =>
-                ProfileScreen(
-                      () => context.go('/login'),
-                      () => context.go('/signup'),
-                      () => context.go('/home'),
-                ),
-          ),
-        ],
+            ),
+      ),
+      GoRoute(
+        path: '/login',
+        builder: (context, __) =>
+            LoginPage(
+              _loginViewmodel,
+                  () => context.go('/home'),
+            ),
+      ),
+      GoRoute(
+        path: '/home',
+        builder: (context, __) =>
+            HomeScreen(
+                  () => context.go('/login'),
+                  () => context.go('/signup'),
+                  () => context.go('/profile'),
+            ),
+      ),
+      GoRoute(
+        path: '/profile',
+        builder: (context, __) =>
+            ProfileScreen(
+                  () => context.go('/login'),
+                  () => context.go('/signup'),
+                  () => context.go('/home'),
+            ),
       ),
     ],
   );
