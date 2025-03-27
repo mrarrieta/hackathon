@@ -30,7 +30,7 @@ class ProfilePage extends StatelessWidget {
         ),
         bottomSheet: AppBottomSheet(
             goToHome: goToHome,
-            goToProfile: () {},
+            goToProfile: null,
             goToLogout: goToLogin,
         )
     );

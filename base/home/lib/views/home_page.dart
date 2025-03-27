@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
             )
         ),
       bottomSheet: AppBottomSheet(
-        goToHome: () {},
+        goToHome: null,
         goToProfile: goToProfile,
         goToLogout: goToLogin,
       ),

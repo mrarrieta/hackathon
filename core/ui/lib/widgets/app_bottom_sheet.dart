@@ -10,13 +10,14 @@ class AppBottomSheet extends StatelessWidget {
     required this.goToLogout,
   });
 
-  final Function() goToHome;
-  final Function() goToProfile;
-  final Function() goToLogout;
+  final Function()? goToHome;
+  final Function()? goToProfile;
+  final Function()? goToLogout;
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      currentIndex: goToHome == null ? 0 : goToProfile == null ? 1 : 2,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: const Icon(FontAwesomeIcons.house),
@@ -31,13 +32,15 @@ class AppBottomSheet extends StatelessWidget {
           label: context.l10n.logout,
         ),
       ],
+      backgroundColor: Theme.of(context).primaryColor,
+      selectedItemColor: Theme.of(context).cardColor,
       onTap: (int index) {
         if (index == 0) {
-          goToHome();
+          goToHome?.call();
         } else if (index == 1) {
-          goToProfile();
+          goToProfile?.call();
         } else if (index == 2) {
-          goToLogout();
+          goToLogout?.call();
         }
       },
     );
