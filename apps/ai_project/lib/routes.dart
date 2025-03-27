@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:go_router/go_router.dart';
-import 'package:home/views/home_screen.dart';
+import 'package:home/views/home_page.dart';
 import 'package:login/data/login_api.dart';
 import 'package:login/data/login_view_model.dart';
 import 'package:login/views/login_page.dart';
-import 'package:profile/views/profile_screen.dart';
+import 'package:profile/views/profile_page.dart';
 import 'package:signup/views/signup_screen.dart';
 import 'package:splash/views/splash_screen.dart';
 
@@ -40,7 +40,7 @@ class Routes {
       GoRoute(
         path: '/home',
         builder: (context, __) =>
-            HomeScreen(
+            HomePage(
                   () => context.go('/login'),
                   () => context.go('/signup'),
                   () => context.go('/profile'),
@@ -49,7 +49,7 @@ class Routes {
       GoRoute(
         path: '/profile',
         builder: (context, __) =>
-            ProfileScreen(
+            ProfilePage(
                   () => context.go('/login'),
                   () => context.go('/signup'),
                   () => context.go('/home'),
