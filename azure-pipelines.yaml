@@ -1,0 +1,47 @@
+trigger:
+    branches: 
+      exclude:
+        - master
+        - develop
+variables:
+  projectDirectory: './apps/vive_mas'
+jobs:
+  #  commenting the tests for future iterations.
+  # - job: tests  
+  #   pool:
+  #     vmImage: 'linux-generic'
+  #   steps:
+  #     - task: FlutterInstall@0
+  #     - task: FlutterTest@0
+  #       inputs:
+  #         projectDirectory: $(projectDirectory)
+  - job: web  
+    pool:
+      vmImage: 'linux-generic'
+    steps:
+      - task: FlutterInstall@0
+      - task: FlutterBuild@0
+        inputs:
+          target: 'web'
+          projectDirectory: $(projectDirectory)
+          displayName: 'Running and building web'
+  - job: android  
+    pool:
+      vmImage: 'linux-generic'
+    steps:
+      - task: FlutterInstall@0  
+      - task: FlutterBuild@0
+        inputs:
+          target: 'apk'
+          projectDirectory: $(projectDirectory)
+          displayName: 'Running and building apk'
+  - job: ios  
+    pool:
+      vmImage: 'macOS-12'
+    steps:
+      - task: FlutterInstall@0  
+      - task: FlutterBuild@0
+        inputs:
+          target: 'ipa'
+          projectDirectory: $(projectDirectory)
+          displayName: 'Running and building iOS'

@@ -1,0 +1,21 @@
+name: locale
+description: This package manages common strings for any app, such as accept, confirm, close, done, etc.
+publish_to: 'none'
+version: 0.0.1
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+
+flutter:

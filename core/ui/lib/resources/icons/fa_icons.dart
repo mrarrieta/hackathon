@@ -1,0 +1,1 @@
+export 'package:icons/font_awesome_flutter.dart';

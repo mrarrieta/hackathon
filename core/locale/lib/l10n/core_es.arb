@@ -1,0 +1,17 @@
+{
+  "@_login": {},
+  "loginPageTitle": "Iniciar sesión",
+  "loginSuccessful": "Login exitoso!",
+  "email": "Correo electrónico",
+  "password": "Contraseña",
+  "login": "Iniciar sesión",
+  "noUserError": "Usuario no encontrado",
+  "wrongPasswordError": "Contraseña incorrecta",
+  "required": "Requerido",
+  "@_other": {},
+  "yes": "Si",
+  "no": "No",
+  "unauthenticatedErrorMessage": "Inicia sesión para acceder a esta funcionalidad",
+  "genericErrorMessage": "Ocurrió un error. Intenta de nuevo más tarde.",
+  "networkFailure": "Revisa tu conexión a internet e intenta de nuevo"
+}
