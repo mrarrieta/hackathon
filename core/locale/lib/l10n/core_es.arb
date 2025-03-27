@@ -1,4 +1,6 @@
 {
+  "@_signup": {},
+  "signupPageTitle": "Registrarse",
   "@_splash": {},
   "splashError": "Error al cargar la información",
   "@_login": {},

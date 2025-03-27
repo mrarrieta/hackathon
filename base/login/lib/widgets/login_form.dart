@@ -6,10 +6,16 @@ import 'custom_button.dart';
 import 'custom_input.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm(this.loginViewModel, this.onSuccess, {super.key});
+  const LoginForm({
+    required this.loginViewModel,
+    required this.goToSignup,
+    required this.onSuccess,
+    super.key
+  });
 
   final LoginViewModel loginViewModel;
   final Function() onSuccess;
+  final Function() goToSignup;
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -59,7 +65,14 @@ class _LoginFormState extends State<LoginForm> {
             validator: (value) => value!.isEmpty ? required : null,
           ),
           const SizedBox(height: 24),
-          CustomButton(text: context.l10n.login, onPressed: _submit),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomButton(text: context.l10n.login, onPressed: _submit),
+              const SizedBox(width: 20),
+              CustomButton(text: context.l10n.signupPageTitle, onPressed: widget.goToSignup),
+            ],
+          ),
           const SizedBox(height: 24),
           CustomButton(text: "bypass login", onPressed: widget.onSuccess),
         ],

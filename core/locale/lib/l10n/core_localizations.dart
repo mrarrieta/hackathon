@@ -93,6 +93,12 @@ abstract class CoreLocalizations {
     Locale('es')
   ];
 
+  /// No description provided for @signupPageTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Registrarse'**
+  String get signupPageTitle;
+
   /// No description provided for @splashError.
   ///
   /// In es, this message translates to:

@@ -3,10 +3,9 @@ import 'package:locale/l10n/core_localizations_extensions.dart';
 import 'package:ui/widgets/app_bottom_sheet.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage(this.goToLogin, this.goToSignup, this.goToHome, {super.key});
+  const ProfilePage(this.goToLogin, this.goToHome, {super.key});
 
   final Function() goToLogin;
-  final Function() goToSignup;
   final Function() goToHome;
 
 
@@ -14,17 +13,11 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text(context.l10n.profile)),
-        body: SafeArea(
+        body: const SafeArea(
             child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
                 child: Column(
-                  children: [
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: goToSignup,
-                      child: const Text('Go to Signup'),
-                    ),
-                  ],
+                  children: [],
                 )
             ),
         ),

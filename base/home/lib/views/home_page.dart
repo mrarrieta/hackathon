@@ -4,10 +4,9 @@ import 'package:locale/l10n/core_localizations_extensions.dart';
 import 'package:ui/widgets/app_bottom_sheet.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage(this.goToLogin, this.goToSignup, this.goToProfile, {super.key});
+  const HomePage(this.goToLogin, this.goToProfile, {super.key});
 
   final Function() goToLogin;
-  final Function() goToSignup;
   final Function() goToProfile;
 
 
@@ -18,7 +17,7 @@ class HomePage extends StatelessWidget {
         body: SafeArea(
             child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: HomeContent(goToLogin, goToSignup, goToProfile)
+                child: HomeContent(goToLogin, goToProfile)
             )
         ),
       bottomSheet: AppBottomSheet(

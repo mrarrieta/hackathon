@@ -31,16 +31,15 @@ class Routes {
         path: '/signup',
         builder: (context, __) =>
             SignupScreen(
-                  () => context.go('/login'),
-                  () => context.go('/home'),
-                  () => context.go('/profile'),
+                  () => context.go('/login')
             ),
       ),
       GoRoute(
         path: '/login',
         builder: (context, __) => LoginPage(
-          _loginViewmodel,
-              () => context.go('/home'),
+          loginViewModel: _loginViewmodel,
+          onSuccess: () => context.go('/home'),
+          goToSignup: () => context.go('/signup'),
         ),
       ),
       GoRoute(
@@ -48,7 +47,6 @@ class Routes {
         builder: (context, __) =>
             HomePage(
                   () => context.go('/login'),
-                  () => context.go('/signup'),
                   () => context.go('/profile'),
             ),
       ),
@@ -57,7 +55,6 @@ class Routes {
         builder: (context, __) =>
             ProfilePage(
                   () => context.go('/login'),
-                  () => context.go('/signup'),
                   () => context.go('/home'),
             ),
       ),
