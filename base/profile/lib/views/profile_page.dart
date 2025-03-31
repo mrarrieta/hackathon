@@ -21,7 +21,7 @@ class ProfilePage extends StatelessWidget {
                 )
             ),
         ),
-        bottomSheet: AppBottomSheet(
+        bottomNavigationBar: AppBottomSheet(
             goToHome: goToHome,
             goToProfile: null,
             goToLogout: goToLogin,
