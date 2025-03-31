@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:locale/l10n/core_localizations_extensions.dart';
 import 'package:login/data/login_view_model.dart';
-
-import 'custom_button.dart';
+import 'package:ui/widgets/custom_button.dart';
 import 'custom_input.dart';
 
 class LoginForm extends StatefulWidget {

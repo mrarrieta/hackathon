@@ -1,10 +1,5 @@
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:locale/l10n/core_localizations.dart';
-import 'package:locale/l10n/core_localizations_extensions.dart';
 import 'package:login/data/login_api.dart';
-
-import 'login_service.dart';
 
 class LoginViewModel {
   LoginViewModel(this.loginClient);
