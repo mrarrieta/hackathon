@@ -49,10 +49,58 @@ class CoreLocalizationsEs extends CoreLocalizations {
   String get logout => 'Cerrar sesión';
 
   @override
+  String get aiGallery => 'Galería';
+
+  @override
+  String get aiCamera => 'Cámara';
+
+  @override
+  String get save => 'Guardar';
+
+  @override
+  String get createChild => 'Crear Hijo ';
+
+  @override
+  String get create => 'Crear ';
+
+  @override
+  String get edit => 'Editar ';
+
+  @override
+  String get execution => 'Ejecución';
+
+  @override
+  String get record => 'Registro';
+
+  @override
+  String get description => 'Descripción';
+
+  @override
+  String get amount => 'Cantidad';
+
+  @override
+  String get invalidDescription => 'Descripción Invalida';
+
+  @override
+  String get invalidNumber => 'Numero Invalido';
+
+  @override
+  String get invalidDate => 'Invalid Date';
+
+  @override
   String get yes => 'Si';
 
   @override
   String get no => 'No';
+
+  @override
+  String get ok => 'Ok';
+
+  @override
+  String get deleteRecord => 'Eliminar Registro';
+
+  @override
+  String get areYouSureDeleteRecord => 'Esta seguro de querer eliminar este Registro? \n\nLa información se perderá para siempre.';
 
   @override
   String get unauthenticatedErrorMessage => 'Inicia sesión para acceder a esta funcionalidad';

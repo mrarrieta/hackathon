@@ -177,6 +177,84 @@ abstract class CoreLocalizations {
   /// **'Cerrar sesión'**
   String get logout;
 
+  /// No description provided for @aiGallery.
+  ///
+  /// In es, this message translates to:
+  /// **'Galería'**
+  String get aiGallery;
+
+  /// No description provided for @aiCamera.
+  ///
+  /// In es, this message translates to:
+  /// **'Cámara'**
+  String get aiCamera;
+
+  /// No description provided for @save.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar'**
+  String get save;
+
+  /// No description provided for @createChild.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear Hijo '**
+  String get createChild;
+
+  /// No description provided for @create.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear '**
+  String get create;
+
+  /// No description provided for @edit.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar '**
+  String get edit;
+
+  /// No description provided for @execution.
+  ///
+  /// In es, this message translates to:
+  /// **'Ejecución'**
+  String get execution;
+
+  /// No description provided for @record.
+  ///
+  /// In es, this message translates to:
+  /// **'Registro'**
+  String get record;
+
+  /// No description provided for @description.
+  ///
+  /// In es, this message translates to:
+  /// **'Descripción'**
+  String get description;
+
+  /// No description provided for @amount.
+  ///
+  /// In es, this message translates to:
+  /// **'Cantidad'**
+  String get amount;
+
+  /// No description provided for @invalidDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'Descripción Invalida'**
+  String get invalidDescription;
+
+  /// No description provided for @invalidNumber.
+  ///
+  /// In es, this message translates to:
+  /// **'Numero Invalido'**
+  String get invalidNumber;
+
+  /// No description provided for @invalidDate.
+  ///
+  /// In es, this message translates to:
+  /// **'Invalid Date'**
+  String get invalidDate;
+
   /// No description provided for @yes.
   ///
   /// In es, this message translates to:
@@ -188,6 +266,24 @@ abstract class CoreLocalizations {
   /// In es, this message translates to:
   /// **'No'**
   String get no;
+
+  /// No description provided for @ok.
+  ///
+  /// In es, this message translates to:
+  /// **'Ok'**
+  String get ok;
+
+  /// No description provided for @deleteRecord.
+  ///
+  /// In es, this message translates to:
+  /// **'Eliminar Registro'**
+  String get deleteRecord;
+
+  /// No description provided for @areYouSureDeleteRecord.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta seguro de querer eliminar este Registro? \n\nLa información se perderá para siempre.'**
+  String get areYouSureDeleteRecord;
 
   /// No description provided for @unauthenticatedErrorMessage.
   ///
