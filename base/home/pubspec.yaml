@@ -10,22 +10,37 @@ dependencies:
   flutter:
     sdk: flutter
   intl: any
-
   ui:
     path: ../../core/ui
-
   locale:
     path: ../../core/locale
-
   icons:
     path: ../../core/icons
-
   url_launcher: ^6.1.10
+  google_mlkit_text_recognition: ^0.15.0
+  image_picker: ^1.0.2
+  camera: ^0.10.5+3
+  path: ^1.8.2
+  path_provider: ^2.1.0
+  tflite_flutter: ^0.10.4
+  dio: ^5.3.3
+  retrofit: ^4.0.1
+  logger: any
+  json_annotation: ^4.8.1
+  crossplat_objectid: ^3.0.0
+  floor: ^1.4.1
+  grouped_list: ^5.1.2
+  dart_openai: ^5.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.1
+  build_runner: ^2.4.6
+  freezed: ^2.3.2
+  json_serializable: ^6.7.1
+  retrofit_generator: any
+  floor_generator: ^1.4.1
 
 flutter:
   assets:
