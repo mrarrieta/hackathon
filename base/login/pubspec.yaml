@@ -10,12 +10,13 @@ dependencies:
   flutter:
     sdk: flutter
   intl: any
+  ui:
+    path: ../../core/ui
   locale:
     path: ../../core/locale
   icons:
     path: ../../core/icons
   url_launcher: ^6.1.10
-  http: ^0.13.5
   freezed_annotation: ^2.2.0
   dio: ^5.3.3
   retrofit: ^4.0.1
