@@ -96,7 +96,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Record` (`id` TEXT, `amount` REAL, `description` TEXT, `type` TEXT, `source` TEXT, `referenceId` TEXT, `time` TEXT, `active` INTEGER, PRIMARY KEY (`id`))');
+            'CREATE TABLE IF NOT EXISTS `Record` (`id` TEXT, `amount` REAL, `description` TEXT, `referenceId` TEXT, `time` TEXT, PRIMARY KEY (`id`))');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -122,11 +122,8 @@ class _$RecordDao extends RecordDao {
                   'id': item.id,
                   'amount': item.amount,
                   'description': item.description,
-                  'type': item.type,
-                  'source': item.source,
                   'referenceId': item.referenceId,
-                  'time': item.time,
-                  'active': item.active == null ? null : (item.active! ? 1 : 0)
+                  'time': item.time
                 }),
         _recordUpdateAdapter = UpdateAdapter(
             database,
@@ -136,11 +133,8 @@ class _$RecordDao extends RecordDao {
                   'id': item.id,
                   'amount': item.amount,
                   'description': item.description,
-                  'type': item.type,
-                  'source': item.source,
                   'referenceId': item.referenceId,
-                  'time': item.time,
-                  'active': item.active == null ? null : (item.active! ? 1 : 0)
+                  'time': item.time
                 }),
         _recordDeletionAdapter = DeletionAdapter(
             database,
@@ -150,11 +144,8 @@ class _$RecordDao extends RecordDao {
                   'id': item.id,
                   'amount': item.amount,
                   'description': item.description,
-                  'type': item.type,
-                  'source': item.source,
                   'referenceId': item.referenceId,
-                  'time': item.time,
-                  'active': item.active == null ? null : (item.active! ? 1 : 0)
+                  'time': item.time
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -177,12 +168,8 @@ class _$RecordDao extends RecordDao {
             id: row['id'] as String?,
             amount: row['amount'] as double?,
             description: row['description'] as String?,
-            type: row['type'] as String?,
-            source: row['source'] as String?,
             referenceId: row['referenceId'] as String?,
-            time: row['time'] as String?,
-            active:
-                row['active'] == null ? null : (row['active'] as int) != 0));
+            time: row['time'] as String?));
   }
 
   @override
@@ -193,11 +180,8 @@ class _$RecordDao extends RecordDao {
             id: row['id'] as String?,
             amount: row['amount'] as double?,
             description: row['description'] as String?,
-            type: row['type'] as String?,
-            source: row['source'] as String?,
             referenceId: row['referenceId'] as String?,
-            time: row['time'] as String?,
-            active: row['active'] == null ? null : (row['active'] as int) != 0),
+            time: row['time'] as String?),
         arguments: [parentId]);
   }
 
