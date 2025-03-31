@@ -1,0 +1,1 @@
+export 'package:home/data/record_repository.dart';
