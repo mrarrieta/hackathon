@@ -18,14 +18,14 @@ class DialogButton extends StatelessWidget {
           style: ElevatedButton.styleFrom(
               backgroundColor: color,
               shape: FixedValues.getCardBorder(10),
-              shadowColor: Colors.black,
+              shadowColor: Colors.white,
               elevation: 10,
               minimumSize: Size.fromHeight(fontSize+17),
           ),
           child: Text(text!,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: Colors.black, fontSize: fontSize)),
+                  color: Colors.white, fontSize: fontSize)),
           onPressed: () => onClick.call(context),
         )
     );

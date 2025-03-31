@@ -41,7 +41,7 @@ class ConfirmationDialog extends Container{
               const SizedBox(height: 30),
               NetworkRequestButton(
                 context.l10n.ok,
-                Colors.blue,
+                Theme.of(context).primaryColor,
                 (context) => onClick.call(),
               ),
               const SizedBox(height: 20.0),

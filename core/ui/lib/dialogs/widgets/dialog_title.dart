@@ -18,7 +18,7 @@ class DialogTittle extends StatelessWidget {
             child: Text(
               title!,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.blue, fontSize: 25, fontWeight: FontWeight.bold),
+              style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 25, fontWeight: FontWeight.bold),
             )
         ),
         Container(width: 30,),
