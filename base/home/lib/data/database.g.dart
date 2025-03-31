@@ -1,0 +1,218 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'database.dart';
+
+// **************************************************************************
+// FloorGenerator
+// **************************************************************************
+
+abstract class $AppDatabaseBuilderContract {
+  /// Adds migrations to the builder.
+  $AppDatabaseBuilderContract addMigrations(List<Migration> migrations);
+
+  /// Adds a database [Callback] to the builder.
+  $AppDatabaseBuilderContract addCallback(Callback callback);
+
+  /// Creates the database and initializes it.
+  Future<AppDatabase> build();
+}
+
+// ignore: avoid_classes_with_only_static_members
+class $FloorAppDatabase {
+  /// Creates a database builder for a persistent database.
+  /// Once a database is built, you should keep a reference to it and re-use it.
+  static $AppDatabaseBuilderContract databaseBuilder(String name) =>
+      _$AppDatabaseBuilder(name);
+
+  /// Creates a database builder for an in memory database.
+  /// Information stored in an in memory database disappears when the process is killed.
+  /// Once a database is built, you should keep a reference to it and re-use it.
+  static $AppDatabaseBuilderContract inMemoryDatabaseBuilder() =>
+      _$AppDatabaseBuilder(null);
+}
+
+class _$AppDatabaseBuilder implements $AppDatabaseBuilderContract {
+  _$AppDatabaseBuilder(this.name);
+
+  final String? name;
+
+  final List<Migration> _migrations = [];
+
+  Callback? _callback;
+
+  @override
+  $AppDatabaseBuilderContract addMigrations(List<Migration> migrations) {
+    _migrations.addAll(migrations);
+    return this;
+  }
+
+  @override
+  $AppDatabaseBuilderContract addCallback(Callback callback) {
+    _callback = callback;
+    return this;
+  }
+
+  @override
+  Future<AppDatabase> build() async {
+    final path = name != null
+        ? await sqfliteDatabaseFactory.getDatabasePath(name!)
+        : ':memory:';
+    final database = _$AppDatabase();
+    database.database = await database.open(
+      path,
+      _migrations,
+      _callback,
+    );
+    return database;
+  }
+}
+
+class _$AppDatabase extends AppDatabase {
+  _$AppDatabase([StreamController<String>? listener]) {
+    changeListener = listener ?? StreamController<String>.broadcast();
+  }
+
+  RecordDao? _recordDaoInstance;
+
+  Future<sqflite.Database> open(
+    String path,
+    List<Migration> migrations, [
+    Callback? callback,
+  ]) async {
+    final databaseOptions = sqflite.OpenDatabaseOptions(
+      version: 1,
+      onConfigure: (database) async {
+        await database.execute('PRAGMA foreign_keys = ON');
+        await callback?.onConfigure?.call(database);
+      },
+      onOpen: (database) async {
+        await callback?.onOpen?.call(database);
+      },
+      onUpgrade: (database, startVersion, endVersion) async {
+        await MigrationAdapter.runMigrations(
+            database, startVersion, endVersion, migrations);
+
+        await callback?.onUpgrade?.call(database, startVersion, endVersion);
+      },
+      onCreate: (database, version) async {
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `Record` (`id` TEXT, `amount` REAL, `description` TEXT, `type` TEXT, `source` TEXT, `referenceId` TEXT, `time` TEXT, `active` INTEGER, PRIMARY KEY (`id`))');
+
+        await callback?.onCreate?.call(database, version);
+      },
+    );
+    return sqfliteDatabaseFactory.openDatabase(path, options: databaseOptions);
+  }
+
+  @override
+  RecordDao get recordDao {
+    return _recordDaoInstance ??= _$RecordDao(database, changeListener);
+  }
+}
+
+class _$RecordDao extends RecordDao {
+  _$RecordDao(
+    this.database,
+    this.changeListener,
+  )   : _queryAdapter = QueryAdapter(database),
+        _recordInsertionAdapter = InsertionAdapter(
+            database,
+            'Record',
+            (Record item) => <String, Object?>{
+                  'id': item.id,
+                  'amount': item.amount,
+                  'description': item.description,
+                  'type': item.type,
+                  'source': item.source,
+                  'referenceId': item.referenceId,
+                  'time': item.time,
+                  'active': item.active == null ? null : (item.active! ? 1 : 0)
+                }),
+        _recordUpdateAdapter = UpdateAdapter(
+            database,
+            'Record',
+            ['id'],
+            (Record item) => <String, Object?>{
+                  'id': item.id,
+                  'amount': item.amount,
+                  'description': item.description,
+                  'type': item.type,
+                  'source': item.source,
+                  'referenceId': item.referenceId,
+                  'time': item.time,
+                  'active': item.active == null ? null : (item.active! ? 1 : 0)
+                }),
+        _recordDeletionAdapter = DeletionAdapter(
+            database,
+            'Record',
+            ['id'],
+            (Record item) => <String, Object?>{
+                  'id': item.id,
+                  'amount': item.amount,
+                  'description': item.description,
+                  'type': item.type,
+                  'source': item.source,
+                  'referenceId': item.referenceId,
+                  'time': item.time,
+                  'active': item.active == null ? null : (item.active! ? 1 : 0)
+                });
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<Record> _recordInsertionAdapter;
+
+  final UpdateAdapter<Record> _recordUpdateAdapter;
+
+  final DeletionAdapter<Record> _recordDeletionAdapter;
+
+  @override
+  Future<List<Record>> findAllRecords() async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM Record WHERE referenceId = 1 ORDER BY time DESC',
+        mapper: (Map<String, Object?> row) => Record(
+            id: row['id'] as String?,
+            amount: row['amount'] as double?,
+            description: row['description'] as String?,
+            type: row['type'] as String?,
+            source: row['source'] as String?,
+            referenceId: row['referenceId'] as String?,
+            time: row['time'] as String?,
+            active:
+                row['active'] == null ? null : (row['active'] as int) != 0));
+  }
+
+  @override
+  Future<List<Record>> findAllRecordsByParent(String parentId) async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM Record WHERE referenceId = ?1 ORDER BY time DESC',
+        mapper: (Map<String, Object?> row) => Record(
+            id: row['id'] as String?,
+            amount: row['amount'] as double?,
+            description: row['description'] as String?,
+            type: row['type'] as String?,
+            source: row['source'] as String?,
+            referenceId: row['referenceId'] as String?,
+            time: row['time'] as String?,
+            active: row['active'] == null ? null : (row['active'] as int) != 0),
+        arguments: [parentId]);
+  }
+
+  @override
+  Future<void> insertRecord(Record record) async {
+    await _recordInsertionAdapter.insert(record, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> updateRecord(Record record) async {
+    await _recordUpdateAdapter.update(record, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> deleteRecord(Record record) async {
+    await _recordDeletionAdapter.delete(record);
+  }
+}
