@@ -24,8 +24,12 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     widget.splashViewModel.getSplash()
-        .then((value) => _splashResponse = value);
-    Future.delayed(const Duration(seconds: 10), () {
+        .then((value) => _splashResponse = value)
+        .onError((_,error) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(error.toString())));
+        });
+    Future.delayed(const Duration(seconds: 5), () {
       widget.onComplete.call();
     });
   }
