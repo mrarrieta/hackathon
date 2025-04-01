@@ -162,8 +162,7 @@ class _$RecordDao extends RecordDao {
 
   @override
   Future<List<Record>> findAllRecords() async {
-    return _queryAdapter.queryList(
-        'SELECT * FROM Record WHERE referenceId = 1 OR referenceId IS NULL ORDER BY time DESC',
+    return _queryAdapter.queryList('SELECT * FROM Record ORDER BY time DESC',
         mapper: (Map<String, Object?> row) => Record(
             id: row['id'] as String?,
             amount: row['amount'] as double?,

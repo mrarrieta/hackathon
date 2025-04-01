@@ -8,6 +8,7 @@ import 'package:home/widgets/record_separaor.dart';
 import 'package:home/widgets/record_view.dart';
 import 'package:icons/font_awesome_flutter.dart';
 import 'package:locale/l10n/core_localizations_extensions.dart';
+import 'package:ui/tools/fixed_values.dart';
 
 import '../data/record.dart';
 import 'text_recognizer.dart';
@@ -34,11 +35,14 @@ class HomeContent extends StatefulWidget {
 }
 
 class _HomeContentState extends State<HomeContent> {
+
+  double totalAmount = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        getFirstRowInformation(context),
+        getFirstRowInformation(context,totalAmount),
         const SizedBox(height: 20,),
         Expanded(child:
           ListView(children: [
@@ -48,6 +52,12 @@ class _HomeContentState extends State<HomeContent> {
                   if(snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   } else {
+                    var drawList = snapshot.data?.where((item) => item.referenceId == null || item.referenceId == "1").toList();
+                    double newAmount = snapshot.data?.fold(0, (previousValue, element) => previousValue != null ? previousValue + element.getAmount() : 0) ?? 0;
+                    if(totalAmount != newAmount) {
+                      totalAmount = newAmount;
+                      setState(() {});
+                    }
                     return MediaQuery.removePadding(
                         context: context,
                         removeTop: true,
@@ -55,7 +65,7 @@ class _HomeContentState extends State<HomeContent> {
                         shrinkWrap: true,
                         sort: false,
                         order: GroupedListOrder.DESC,
-                        elements: snapshot.data ?? [],
+                        elements: drawList ?? [],
                         physics: const ClampingScrollPhysics(),
                         groupBy: (element) => element.getTime().split(' ')[0],
                         groupSeparatorBuilder: (String? groupValue) =>
@@ -82,18 +92,18 @@ class _HomeContentState extends State<HomeContent> {
     );
   }
 
-  getFirstRowInformation(BuildContext context) {
+  getFirstRowInformation(BuildContext context, double totalAmount) {
     return Row(children: [
       Expanded(
           child: Card(
             color: Theme
                 .of(context)
                 .primaryColor,
-            child: const Padding(
-                padding: EdgeInsets.all(15),
+            child: Padding(
+                padding: const EdgeInsets.all(15),
                 child: Text(
-                  "\$1,000",
-                  style: TextStyle(fontSize: 20, color: Colors.white),
+                  FixedValues.currency.format(totalAmount),
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
                   textAlign: TextAlign.center,
                 )
             ),
