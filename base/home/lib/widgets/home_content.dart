@@ -114,11 +114,11 @@ class _HomeContentState extends State<HomeContent> {
                   RecordValidatorProvider(context.l10n, DateTools()),
                   widget.recordRepository,
                   Record(),
-                      (record) =>
-                          widget.recordRepository.addRecord(record)
-                          .then((value) {
+                  (record) => widget.recordRepository.addRecord(record)
+                      .then((value) {
                         record.children?.forEach((element) {
                           widget.recordRepository.addRecord(element);
+                          setState(() {});
                         });
                         Navigator.pop(context);
                       }),

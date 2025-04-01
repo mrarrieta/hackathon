@@ -13,8 +13,8 @@ import 'package:home/tools/record_validator.dart';
 import 'package:home/widgets/gallery_view.dart';
 import 'package:home/widgets/record_view.dart';
 import 'package:locale/l10n/core_localizations_extensions.dart';
+import 'package:ui/dialogs/widgets/dialog_button.dart';
 import 'package:ui/tools/fixed_values.dart';
-import 'package:ui/widgets/custom_button.dart';
 
 class TextRecognizerView extends StatefulWidget {
   TextRecognizerView(
@@ -164,9 +164,10 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
                           (_) {},
                     ),
                     const SizedBox(height: 10,),
-                    CustomButton(
-                        text: context.l10n.save,
-                        onPressed: () {
+                    DialogButton(
+                        context.l10n.save,
+                        Theme.of(context).primaryColor,
+                        (_) {
                           widget.onRecordSelected.call(record);
                         }
                     ),
@@ -184,13 +185,22 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
                 SizedBox(height: 20,),
               ],);
           } else {
-            return const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: 20,),
-                CircularProgressIndicator(),
-                SizedBox(height: 20,),
-              ],);
+            return const Expanded(
+                child: Row(
+                  children: [
+                    Spacer(flex: 1),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 20,),
+                        CircularProgressIndicator(),
+                        SizedBox(height: 20,),
+                      ],
+                    ),
+                    Spacer(flex: 1),
+                  ],
+                )
+            );
           }
         });
   }
