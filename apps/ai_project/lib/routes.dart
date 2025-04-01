@@ -15,44 +15,51 @@ class Routes {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, __) => SplashPage(
-            InstanceProvider.splashViewModel,
+        pageBuilder: (context, __) => NoTransitionPage(
+            child: SplashPage(
+                InstanceProvider.splashViewModel,
                 () => context.replace('/login')
+            )
         ),
       ),
       GoRoute(
         path: '/signup',
-        builder: (context, __) =>
-            SignupScreen(
+        pageBuilder: (context, __) => NoTransitionPage(
+          child: SignupScreen(
                   () => context.go('/login')
-            ),
+          ),
+        ),
       ),
       GoRoute(
         path: '/login',
-        builder: (context, __) => LoginPage(
-          loginViewModel: InstanceProvider.loginViewmodel,
-          onSuccess: () => context.go('/home'),
-          goToSignup: () => context.go('/signup'),
+        pageBuilder: (context, __) => NoTransitionPage(
+          child: LoginPage(
+            loginViewModel: InstanceProvider.loginViewmodel,
+            onSuccess: () => context.go('/home'),
+            goToSignup: () => context.go('/signup'),
+          ),
         ),
       ),
       GoRoute(
         path: '/home',
-        builder: (context, __) =>
-            HomePage(
-              recordRepository: InstanceProvider.recordRepository,
-              recordValidatorProvider: RecordValidatorProvider(context.l10n, DateTools()),
-              goToLogin: () => context.go('/login'),
-              goToProfile: () => context.go('/profile'),
-              startCaptureFlow: () => context.go('/capture'),
-            ),
+        pageBuilder: (context, __) => NoTransitionPage(
+          child: HomePage(
+            recordRepository: InstanceProvider.recordRepository,
+            recordValidatorProvider: RecordValidatorProvider(context.l10n, DateTools()),
+            goToLogin: () => context.go('/login'),
+            goToProfile: () => context.go('/profile'),
+            startCaptureFlow: () => context.go('/capture'),
+          ),
+        ),
       ),
       GoRoute(
         path: '/profile',
-        builder: (context, __) =>
-            ProfilePage(
-                  () => context.go('/login'),
-                  () => context.go('/home'),
-            ),
+        pageBuilder: (context, __) => NoTransitionPage(
+          child: ProfilePage(
+                () => context.go('/login'),
+                () => context.go('/home'),
+          ),
+        ),
       ),
     ],
   );
