@@ -79,8 +79,10 @@ class Record {
     return this;
   }
 
-  Record addParent(Record parent) {
-    referenceId = parent.getId();
+  Record addParent(Record? parent) {
+    if(parent != null) {
+      referenceId = parent.getId();
+    }
     return this;
   }
 

@@ -12,7 +12,7 @@ import 'package:locale/l10n/core_localizations_extensions.dart';
 import '../data/record.dart';
 import 'text_recognizer.dart';
 
-class HomeContent extends StatelessWidget {
+class HomeContent extends StatefulWidget {
   const HomeContent({
     required this.recordRepository,
     required this.recordValidatorProvider,
@@ -29,44 +29,54 @@ class HomeContent extends StatelessWidget {
   final Function() startCaptureFlow;
 
   @override
+  State<StatefulWidget> createState() => _HomeContentState();
+
+}
+
+class _HomeContentState extends State<HomeContent> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         getFirstRowInformation(context),
         const SizedBox(height: 20,),
-        FutureBuilder(
-            future: recordRepository.getAllRecords(),
-            builder: (context, snapshot) {
-              if(snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
-              } else {
-                return MediaQuery.removePadding(
-                    context: context,
-                    removeTop: true,
-                    child: GroupedListView<dynamic, String?>(
-                    shrinkWrap: true,
-                    sort: false,
-                    order: GroupedListOrder.DESC,
-                    elements: snapshot.data ?? [],
-                    physics: const ClampingScrollPhysics(),
-                    groupBy: (element) => element.getTime().split(' ')[0],
-                    groupSeparatorBuilder: (String? groupValue) =>
-                        RecordSeparator(
-                            groupValue,
-                            Theme.of(context).primaryColor,
-                            Colors.white
-                        ),
-                    itemBuilder: (context, dynamic element) =>
-                        RecordView(
-                          recordValidatorProvider,
-                          recordRepository,
-                          element,
-                          Colors.black,
-                              (record) {},
-                        )
-              ));
-              }
-            }
+        Expanded(child:
+          ListView(children: [
+            FutureBuilder(
+                future: widget.recordRepository.getAllRecords(),
+                builder: (context, snapshot) {
+                  if(snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else {
+                    return MediaQuery.removePadding(
+                        context: context,
+                        removeTop: true,
+                        child: GroupedListView<dynamic, String?>(
+                        shrinkWrap: true,
+                        sort: false,
+                        order: GroupedListOrder.DESC,
+                        elements: snapshot.data ?? [],
+                        physics: const ClampingScrollPhysics(),
+                        groupBy: (element) => element.getTime().split(' ')[0],
+                        groupSeparatorBuilder: (String? groupValue) =>
+                            RecordSeparator(
+                                groupValue,
+                                Theme.of(context).primaryColor,
+                                Colors.white
+                            ),
+                        itemBuilder: (context, dynamic element) =>
+                            RecordView(
+                              widget.recordValidatorProvider,
+                              widget.recordRepository,
+                              element,
+                              Colors.black,
+                              (record) => setState(() {}),
+                            )
+                  ));
+                  }
+                }
+            ),
+          ]),
         ),
       ],
     );
@@ -102,13 +112,13 @@ class HomeContent extends StatelessWidget {
             builder: (BuildContext context) =>
                 TextRecognizerView(
                   RecordValidatorProvider(context.l10n, DateTools()),
-                  recordRepository,
+                  widget.recordRepository,
                   Record(),
                       (record) =>
-                          recordRepository.addRecord(record)
+                          widget.recordRepository.addRecord(record)
                           .then((value) {
                         record.children?.forEach((element) {
-                          recordRepository.addRecord(element);
+                          widget.recordRepository.addRecord(element);
                         });
                         Navigator.pop(context);
                       }),
@@ -139,15 +149,13 @@ class HomeContent extends StatelessWidget {
               ),
               builder: (BuildContext context) {
                 return AddRecordDialog(
-                  recordValidatorProvider,
-                  recordRepository,
+                  widget.recordValidatorProvider,
+                  widget.recordRepository,
                   record,
                   null,
                       (record) {
-                        recordRepository.addRecord(record)
-                        .then((_) {
-                      Navigator.pop(context);
-                    });
+                        widget.recordRepository.addRecord(record)
+                        .then((_) => setState(() {}));
                   },
                   key: Key(record.id.toString()),
                 );

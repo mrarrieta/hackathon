@@ -131,13 +131,21 @@ class AddRecordDialogState extends State<AddRecordDialog> {
                             getDescriptionController().text,
                             getAmountController().text.isEmpty
                                 ? 0.0
-                                : AmountTools.getAmount(
-                                true, record, getAmountController()),
+                                : AmountTools.getAmount(true, record, getAmountController()),
                             getTimeController().text,
-                          ),
+                          ).addParent(widget.parentRecord),
                         ).then((_) {
-                          Navigator.pop(context);
-                          widget.onRecordSelected.call(record);
+                          if(widget.parentRecord != null) {
+                            widget.recordRepository.addRecord(
+                                widget.parentRecord!.makeParent(FixedValues.date.format(DateTime.now()))
+                            ).then((_) {
+                              Navigator.pop(context);
+                              widget.onRecordSelected.call(record);
+                            });
+                          } else {
+                            Navigator.pop(context);
+                            widget.onRecordSelected.call(record);
+                          }
                         });
                       }
                     },
