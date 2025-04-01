@@ -56,7 +56,9 @@ class _HomeContentState extends State<HomeContent> {
                     double newAmount = snapshot.data?.fold(0, (previousValue, element) => previousValue != null ? previousValue + element.getAmount() : 0) ?? 0;
                     if(totalAmount != newAmount) {
                       totalAmount = newAmount;
-                      setState(() {});
+                      WidgetsBinding.instance.addPostFrameCallback((_){
+                        setState(() {});
+                      });
                     }
                     return MediaQuery.removePadding(
                         context: context,
