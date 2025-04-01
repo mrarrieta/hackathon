@@ -13,17 +13,14 @@ import 'package:ui/dialogs/widgets/dialog_button.dart';
 import 'package:ui/dialogs/widgets/dialog_title.dart';
 import 'package:ui/tools/fixed_values.dart';
 import 'package:ui/tools/view_tools.dart';
-import 'package:ui/widgets/custom_button.dart';
 
-class AddRecordDialog extends Container {
-  AddRecordDialog(
-      this.recordValidatorProvider,
+class AddRecordDialog extends StatefulWidget {
+  AddRecordDialog(this.recordValidatorProvider,
       this.recordRepository,
       this.initialRecord,
       this.parentRecord,
       this.onRecordSelected,
-      {Key? key}
-  ) : super(key: key);
+      {Key? key}) : super(key: key);
 
   final RecordValidatorProvider recordValidatorProvider;
   final RecordRepository recordRepository;
@@ -31,23 +28,56 @@ class AddRecordDialog extends Container {
   final Record? parentRecord;
   final Function(Record) onRecordSelected;
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _padding = const EdgeInsets.only(top: 5, left: 40, right: 40);
+
+  @override
+  State<StatefulWidget> createState() => AddRecordDialogState();
+
+}
+
+class AddRecordDialogState extends State<AddRecordDialog> {
+
+  static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  TextEditingController? amountController;
+
+  getAmountController() {
+    amountController ??= TextEditingController(
+        text: widget.initialRecord.getAmount() == 0.0 ? "0.0" : FixedValues.currency
+            .format(widget.initialRecord.getAmount()));
+    return amountController;
+  }
+
+  TextEditingController? descriptionController;
+
+  getDescriptionController() {
+    descriptionController ??=
+        TextEditingController(text: widget.initialRecord.getDescription());
+    return descriptionController;
+  }
+
+  TextEditingController? timeController;
+
+  getTimeController() {
+    timeController ??= TextEditingController(text: widget.initialRecord.getTime());
+    return timeController;
+  }
 
   @override
   Container build(BuildContext context) {
-
-    Record record = initialRecord;
-    TextEditingController amountController = TextEditingController(text: record.getAmount() == 0.0 ? "" : FixedValues.currency.format(record.getAmount()));
-    TextEditingController descriptionController = TextEditingController(text: record.getDescription());
-    TextEditingController timeController = TextEditingController(text: record.getTime());
-
+    Record record = widget.initialRecord;
     double currentAmount = 0.0;
 
     return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration:  const BoxDecoration(
+        padding: EdgeInsets.only(
+          left: 20,
+          right: 20,
+          bottom: (MediaQuery.of(context).viewInsets.bottom != 0) ? 200 : 16
+        ),
+        decoration: const BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.only(topLeft: Radius.circular(25.0), topRight: Radius.circular(25.0))
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(25.0), topRight: Radius.circular(25.0))
         ),
         child: StatefulBuilder(
             builder: (context, setState) {
@@ -56,7 +86,8 @@ class AddRecordDialog extends Container {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   const SizedBox(height: 20.0),
-                  DialogTittle(getTittle(context, record), () => Navigator.pop(context)),
+                  DialogTittle(
+                      getTittle(context, record), () => Navigator.pop(context)),
                   const SizedBox(height: 15.0),
                   Form(
                       key: _formKey,
@@ -64,17 +95,18 @@ class AddRecordDialog extends Container {
                       child: ListBody(
                           children: getBody(
                               context,
-                              onRecordSelected,
-                              amountController,
-                              descriptionController,
-                              timeController,
+                              widget.onRecordSelected,
+                              getAmountController(),
+                              getDescriptionController(),
+                              getTimeController(),
                               record,
                               currentAmount,
                                   (newAmount) {
-                                WidgetsBinding.instance.addPostFrameCallback((_){
-                                  setState(() {
+                                WidgetsBinding.instance.addPostFrameCallback((
+                                    _) {
+                                  /*setState(() {
                                     currentAmount = newAmount;
-                                  });
+                                  });*/
                                 });
                               })
                       )
@@ -82,23 +114,30 @@ class AddRecordDialog extends Container {
                   SizedBox(
                       height: record.isParent() ||
                           (!record.isParent() &&
-                              record.getId().isEmpty &&
+                              record
+                                  .getId()
+                                  .isEmpty &&
                               currentAmount > 0
-                          )  ? 10.0 : 30),
+                          ) ? 10.0 : 30),
                   DialogButton(
                     context.l10n.save,
-                    Theme.of(context).primaryColor,
-                    (_) {
+                    Theme
+                        .of(context)
+                        .primaryColor,
+                        (_) {
                       if (_formKey.currentState!.validate()) {
-                        recordRepository.addRecord(
-                            record.addData(
-                              descriptionController.text,
-                              amountController.text.isEmpty ? 0.0 : AmountTools.getAmount(true, record, amountController),
-                              timeController.text,
-                            ),
+                        widget.recordRepository.addRecord(
+                          record.addData(
+                            getDescriptionController().text,
+                            getAmountController().text.isEmpty
+                                ? 0.0
+                                : AmountTools.getAmount(
+                                true, record, getAmountController()),
+                            getTimeController().text,
+                          ),
                         ).then((_) {
                           Navigator.pop(context);
-                          onRecordSelected.call(record);
+                          widget.onRecordSelected.call(record);
                         });
                       }
                     },
@@ -110,7 +149,7 @@ class AddRecordDialog extends Container {
     );
   }
 
-  void printDebug(String data){
+  void printDebug(String data) {
     if (kDebugMode) {
       print(data);
     }
@@ -118,9 +157,11 @@ class AddRecordDialog extends Container {
 
   String getTittle(BuildContext context, Record record) {
     String result = "";
-    if (parentRecord != null) {
+    if (widget.parentRecord != null) {
       result += context.l10n.createChild;
-    } else if (record.getId().isEmpty) {
+    } else if (record
+        .getId()
+        .isEmpty) {
       result += context.l10n.create;
     } else {
       result += context.l10n.edit;
@@ -129,18 +170,20 @@ class AddRecordDialog extends Container {
     return result;
   }
 
-  getHeader() {
-    if (parentRecord != null) {
+  getHeader(BuildContext context) {
+    if (widget.parentRecord != null) {
       return Container(
-        padding: const EdgeInsets.only(bottom: 15, left: 20.0, right: 20),
+        padding: widget._padding,
         child: Card(
-          color: Colors.white,
+          color: Theme
+              .of(context)
+              .primaryColor,
           shape: FixedValues.getCardBorder(10),
           child: Container(
-            margin: const EdgeInsets.all(10),
-            child: Text(parentRecord!.getDescription(),
+            margin: const EdgeInsets.all(5),
+            child: Text(widget.parentRecord!.getDescription(),
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.black, fontSize: 15),),
+              style: const TextStyle(color: Colors.white, fontSize: 20),),
           ),
         ),
       );
@@ -152,21 +195,20 @@ class AddRecordDialog extends Container {
   getTimePicker(
       TextEditingController? timeController,
       Record record
-      ) {
-      return Container(
-          padding: const EdgeInsets.only(top: 5, left: 20.0, right: 55),
-          child: InputField(
-            timeController,
-            TextInputType.datetime,
-            recordValidatorProvider.validateTime,
-            Icons.calendar_today,
-            style: 1,
-          )
-      );
+  ) {
+    return Container(
+        padding: widget._padding,
+        child: InputField(
+          timeController,
+          TextInputType.datetime,
+          widget.recordValidatorProvider.validateTime,
+          Icons.calendar_today,
+          style: 1,
+        )
+    );
   }
 
-  List<Widget> getBody(
-      BuildContext context,
+  List<Widget> getBody(BuildContext context,
       Function(Record) onRecordSelected,
       TextEditingController amountController,
       TextEditingController descriptionController,
@@ -174,16 +216,15 @@ class AddRecordDialog extends Container {
       Record record,
       double currentAmount,
       Function(double) onNewAmount) {
-
     List<Widget> result = [];
-    result.add(getHeader());
+    result.add(getHeader(context));
     result.add(
       Container(
-        padding: const EdgeInsets.only(left: 20.0, right: 55),
+        padding: widget._padding,
         child: InputField(
           descriptionController,
           TextInputType.text,
-          recordValidatorProvider.validateDescription,
+          widget.recordValidatorProvider.validateDescription,
           Icons.drive_file_rename_outline,
           hint: context.l10n.description,
           style: 1,
@@ -196,12 +237,13 @@ class AddRecordDialog extends Container {
       result.add(const SizedBox(height: 17));
       result.add(
           ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: ViewTools.getPercentageWidth(context, 95)),
+            constraints: BoxConstraints(
+                maxHeight: ViewTools.getPercentageWidth(context, 95)),
             child: SingleChildScrollView(
               child:
               RecordList(
-                recordValidatorProvider,
-                  recordRepository,
+                  widget.recordValidatorProvider,
+                  widget.recordRepository,
                   record.children == null ? [] : record.children!,
                   8,
                   onRecordSelected
@@ -212,16 +254,17 @@ class AddRecordDialog extends Container {
     } else {
       result.add(
           Container(
-              padding: const EdgeInsets.only(top: 5, left: 20.0, right: 55),
+              padding: widget._padding,
               child: InputField(
                 amountController,
                 TextInputType.phone,
-                    (value) => recordValidatorProvider.validateAmount(
-                    value!,
-                    record,
-                    amountController,
-                    onNewAmount
-                ),
+                    (value) =>
+                        widget.recordValidatorProvider.validateAmount(
+                        value!,
+                        record,
+                        amountController,
+                        onNewAmount
+                    ),
                 Icons.attach_money,
                 hint: context.l10n.amount,
                 style: 1,
