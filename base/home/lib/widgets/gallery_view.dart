@@ -8,6 +8,7 @@ import 'package:locale/l10n/core_localizations_extensions.dart';
 
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:ui/dialogs/widgets/dialog_button.dart';
 import 'package:ui/tools/view_tools.dart';
 import 'package:ui/widgets/custom_button.dart';
 
@@ -59,9 +60,10 @@ class _GalleryViewState extends State<GalleryView> {
           if(_image == null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: CustomButton(
-                text: context.l10n.aiGallery,
-                onPressed: () => _getImage(ImageSource.gallery),
+              child: DialogButton(
+                context.l10n.aiGallery,
+                Theme.of(context).primaryColor,
+                (_) => _getImage(ImageSource.gallery),
               ),
             ),
           if(_image == null)
@@ -69,9 +71,10 @@ class _GalleryViewState extends State<GalleryView> {
           if(_image == null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: CustomButton(
-                text: context.l10n.aiCamera,
-                onPressed: () => _getImage(ImageSource.camera),
+              child: DialogButton(
+                context.l10n.aiCamera,
+                Theme.of(context).primaryColor,
+                (_) => _getImage(ImageSource.camera),
               ),
             ),
           const SizedBox(height: 20,),
