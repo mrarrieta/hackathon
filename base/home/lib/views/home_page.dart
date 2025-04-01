@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:home/data/record_repository.dart';
 import 'package:home/tools/record_validator.dart';
 import 'package:home/widgets/home_content.dart';
@@ -23,6 +24,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    dotenv.load(fileName: ".env");
+
     return Scaffold(
         appBar: AppBar(title: Text(context.l10n.homePageTitle)),
         body: SafeArea(

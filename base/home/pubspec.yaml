@@ -31,6 +31,7 @@ dependencies:
   floor: ^1.4.1
   grouped_list: ^5.1.2
   dart_openai: ^5.1.0
+  flutter_dotenv: ^5.2.1
 
 dev_dependencies:
   flutter_test:
@@ -45,3 +46,4 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - ../../.env
