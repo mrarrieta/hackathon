@@ -1,29 +1,22 @@
-import 'package:dio/dio.dart';
+import 'package:ai_project/instance_provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:home/tools/date_tools.dart';
+import 'package:home/tools/record_validator.dart';
 import 'package:home/views/home_page.dart';
-import 'package:login/data/login_api.dart';
-import 'package:login/data/login_view_model.dart';
+import 'package:locale/l10n/core_localizations_extensions.dart';
 import 'package:login/views/login_page.dart';
 import 'package:profile/views/profile_page.dart';
 import 'package:signup/views/signup_screen.dart';
-import 'package:splash/data/splash_api.dart';
-import 'package:splash/data/splash_view_model.dart';
 import 'package:splash/views/splash_page.dart';
 
 class Routes {
-
-  static Dio _dio = Dio(BaseOptions(contentType: "application/json"));
-  static LoginClient _loginClient = LoginClient(_dio);
-  static SplashClient _splashClient = SplashClient(_dio);
-  static LoginViewModel _loginViewmodel = LoginViewModel(_loginClient);
-  static SplashViewModel _splashViewModel = SplashViewModel(_splashClient);
 
   static final router = GoRouter(
     routes: [
       GoRoute(
         path: '/',
         builder: (context, __) => SplashPage(
-            _splashViewModel,
+            InstanceProvider.splashViewModel,
                 () => context.replace('/login')
         ),
       ),
@@ -37,7 +30,7 @@ class Routes {
       GoRoute(
         path: '/login',
         builder: (context, __) => LoginPage(
-          loginViewModel: _loginViewmodel,
+          loginViewModel: InstanceProvider.loginViewmodel,
           onSuccess: () => context.go('/home'),
           goToSignup: () => context.go('/signup'),
         ),
@@ -46,8 +39,11 @@ class Routes {
         path: '/home',
         builder: (context, __) =>
             HomePage(
-                  () => context.go('/login'),
-                  () => context.go('/profile'),
+              recordRepository: InstanceProvider.recordRepository,
+              recordValidatorProvider: RecordValidatorProvider(context.l10n, DateTools()),
+              goToLogin: () => context.go('/login'),
+              goToProfile: () => context.go('/profile'),
+              startCaptureFlow: () => context.go('/capture'),
             ),
       ),
       GoRoute(
