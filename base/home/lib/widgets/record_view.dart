@@ -53,16 +53,13 @@ class RecordView extends StatefulWidget {
 
   Color _getColor() {
     if (record.referenceId == null) {
-      if (record.isParent()) {
-        return Colors.blue;
-      }
-      if (record.getAmount() > 0) {
-        return Colors.green;
-      } else {
-        return Colors.red;
-      }
+      return Colors.blue;
     } else {
-      return Colors.grey;
+      if(record.isParent()) {
+        return Colors.blue;
+      } else {
+        return Colors.white;
+      }
     }
   }
 }
