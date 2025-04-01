@@ -93,13 +93,6 @@ class Record {
     return getTime().length > 2 ? getTime().substring(2,getTime().length) : getTime();
   }
 
-  bool isConsistent() {
-    if(isParent() && getAmount() != 0.0) {
-      return false;
-    }
-    return true;
-  }
-
   Record fixRecord() {
     if(isParent() && getAmount() != 0.0) {
       amount = 0.0;
