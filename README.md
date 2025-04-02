@@ -53,7 +53,7 @@ Create a .env file in the root of your project with the example content:
 
 ```dart
 OPEN_AI_KEY=actual-openai-key-value
-```dart
+```
 
 1. Open root folder of project
 2. Go to "Add Configuration"
