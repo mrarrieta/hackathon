@@ -47,8 +47,15 @@ TODO: Guide users through getting your code up and running on their own system. 
 3. Latest releases
 4. API references
 
-
 ## Running project on Android Studio:
+
+Create a .env file in the root of your project with the example content:
+
+```dart
+OPEN_AI_KEY=actual-openai-key-value
+```dart
+
+```dart
 
 1. Open root folder of project
 2. Go to "Add Configuration"

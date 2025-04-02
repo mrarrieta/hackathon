@@ -1,12 +1,3 @@
-
-Create a .env file in the root of your project with the example content:
-
-```dart
-OPEN_AI_KEY=actual-openai-key-value
-```dart
-
-```dart
-
 <!--
 This README describes the package. If you publish this package to pub.dev,
 this README's contents appear on the landing page for your package.
