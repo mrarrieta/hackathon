@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:locale/l10n/core_localizations_extensions.dart';
 import 'package:login/data/login_view_model.dart';
-import 'package:ui/widgets/custom_button.dart';
+import 'package:ui/dialogs/widgets/dialog_button.dart';
 import 'custom_input.dart';
 
 class LoginForm extends StatefulWidget {
@@ -51,29 +51,24 @@ class _LoginFormState extends State<LoginForm> {
       key: _formKey,
       child: Column(
         children: [
-          CustomInput(
+          Padding(padding: const EdgeInsets.symmetric(horizontal: 15), child: CustomInput(
             label: context.l10n.email,
             onSaved: (value) => widget.loginViewModel.name = value ?? '',
             validator: (value) => value!.isEmpty ? required : null,
-          ),
-          const SizedBox(height: 16),
-          CustomInput(
+          )),
+          const SizedBox(height: 10),
+          Padding(padding: const EdgeInsets.symmetric(horizontal: 15), child: CustomInput(
             label: context.l10n.password,
             obscureText: true,
             onSaved: (value) => widget.loginViewModel.password = value ?? '',
             validator: (value) => value!.isEmpty ? required : null,
-          ),
-          const SizedBox(height: 24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomButton(text: context.l10n.login, onPressed: _submit),
-              const SizedBox(width: 20),
-              CustomButton(text: context.l10n.signupPageTitle, onPressed: widget.goToSignup),
-            ],
-          ),
-          const SizedBox(height: 24),
-          CustomButton(text: "bypass login", onPressed: widget.onSuccess),
+          )),
+          const SizedBox(height: 30),
+          DialogButton(context.l10n.login, Theme.of(context).primaryColor, (_) => _submit.call()),
+          const SizedBox(height: 15),
+          DialogButton(context.l10n.signupPageTitle, Theme.of(context).primaryColor, (_) => widget.goToSignup.call()),
+          const SizedBox(height: 15),
+          DialogButton("bypass login", Theme.of(context).primaryColor, (_) => widget.onSuccess.call()),
         ],
       ),
     );
