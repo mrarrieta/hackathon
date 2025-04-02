@@ -5,11 +5,12 @@ class InputField extends StatelessWidget {
       this.textEditingController,
       this.inputType,
       this.appValidator,
-      this.icon,
       {
         this.label,
         this.hint,
         this.style = 0,
+        this.obscureText = false,
+        this.icon,
         Key? key
       }
       ) : super(key: key);
@@ -17,10 +18,11 @@ class InputField extends StatelessWidget {
   final TextEditingController? textEditingController;
   final TextInputType inputType;
   final String? Function(String?)? appValidator;
-  final IconData icon;
+  final IconData? icon;
   final String? hint;
   final String? label;
   final int style;
+  final bool obscureText;
 
 
   @override
@@ -31,7 +33,24 @@ class InputField extends StatelessWidget {
       keyboardType: inputType,
       style: const TextStyle(color: Colors.black, fontSize: 20),
       validator: appValidator,
+      obscureText: obscureText,
+      decoration: getDecoration(context),
     );
+  }
+
+  getDecoration(BuildContext context) {
+    if (icon != null) {
+      return InputDecoration(
+        labelText: label,
+        icon: Icon(icon, color: Theme
+            .of(context)
+            .primaryColor),
+      );
+    } else {
+      return InputDecoration(
+        labelText: label,
+      );
+    }
   }
 
 }

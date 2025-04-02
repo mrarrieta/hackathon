@@ -6,14 +6,12 @@ class LoginViewModel {
 
   final LoginClient loginClient;
 
-  String name = '';
-  String password = '';
   LoginResponse? response;
 
-  Future<String?> login(CoreLocalizations localization) async {
-    final response = await loginClient.getUser(name);
+  Future<String?> login(CoreLocalizations localization, String user, String pass) async {
+    final response = await loginClient.getUser(user);
     if (response == null) return localization.noUserError;
-    if (response.password == password) {
+    if (response.password == pass) {
       this.response = response;
       return null;
     } else {

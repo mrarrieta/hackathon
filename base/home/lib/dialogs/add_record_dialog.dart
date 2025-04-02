@@ -6,7 +6,7 @@ import 'package:home/data/record.dart';
 import 'package:home/data/record_repository.dart';
 import 'package:home/tools/amount_tools.dart';
 import 'package:home/tools/record_validator.dart';
-import 'package:home/widgets/input_field.dart';
+import 'package:ui/widgets/input_field.dart';
 import 'package:home/widgets/record_list.dart';
 import 'package:locale/l10n/core_localizations_extensions.dart';
 import 'package:ui/dialogs/widgets/dialog_button.dart';
@@ -28,7 +28,7 @@ class AddRecordDialog extends StatefulWidget {
   final Record? parentRecord;
   final Function(Record) onRecordSelected;
 
-  final _padding = const EdgeInsets.only(top: 5, left: 40, right: 40);
+  final _padding = const EdgeInsets.only(top: 5, left: 30, right: 65);
 
   @override
   State<StatefulWidget> createState() => AddRecordDialogState();
@@ -210,7 +210,7 @@ class AddRecordDialogState extends State<AddRecordDialog> {
           timeController,
           TextInputType.datetime,
           widget.recordValidatorProvider.validateTime,
-          Icons.calendar_today,
+          icon: Icons.calendar_today,
           style: 1,
         )
     );
@@ -233,7 +233,7 @@ class AddRecordDialogState extends State<AddRecordDialog> {
           descriptionController,
           TextInputType.text,
           widget.recordValidatorProvider.validateDescription,
-          Icons.drive_file_rename_outline,
+          icon: Icons.drive_file_rename_outline,
           hint: context.l10n.description,
           style: 1,
         ),
@@ -273,7 +273,7 @@ class AddRecordDialogState extends State<AddRecordDialog> {
                         amountController,
                         onNewAmount
                     ),
-                Icons.attach_money,
+                icon: Icons.attach_money,
                 hint: context.l10n.amount,
                 style: 1,
               )

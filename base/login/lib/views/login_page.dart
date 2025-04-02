@@ -24,8 +24,23 @@ class LoginPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: LoginForm(
-                loginViewModel: loginViewModel,
-                onSuccess: onSuccess,
+                onLogin: (user, pass) {
+                  debugPrint("Login: $user, $pass");
+                  loginViewModel.login(context.l10n, user, pass).then((result) {
+                    if (result == null) {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(
+                          content: Text(context.l10n.loginSuccessful)));
+                      onSuccess.call();
+                    } else {
+                      ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(SnackBar(content: Text(result)));
+                    }
+                  });
+                },
+                skipLogin: onSuccess,
                 goToSignup: goToSignup,
             )
           )
