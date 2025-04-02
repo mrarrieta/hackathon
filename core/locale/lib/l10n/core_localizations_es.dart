@@ -28,6 +28,9 @@ class CoreLocalizationsEs extends CoreLocalizations {
   String get login => 'Iniciar sesión';
 
   @override
+  String get skipLogin => 'Omitir inicio de sesión';
+
+  @override
   String get noUserError => 'Usuario no encontrado';
 
   @override

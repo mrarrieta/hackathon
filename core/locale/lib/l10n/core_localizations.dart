@@ -135,6 +135,12 @@ abstract class CoreLocalizations {
   /// **'Iniciar sesión'**
   String get login;
 
+  /// No description provided for @skipLogin.
+  ///
+  /// In es, this message translates to:
+  /// **'Omitir inicio de sesión'**
+  String get skipLogin;
+
   /// No description provided for @noUserError.
   ///
   /// In es, this message translates to:

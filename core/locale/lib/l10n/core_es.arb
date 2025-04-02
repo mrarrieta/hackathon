@@ -9,6 +9,7 @@
   "email": "Correo electrónico",
   "password": "Contraseña",
   "login": "Iniciar sesión",
+  "skipLogin": "Omitir inicio de sesión",
   "noUserError": "Usuario no encontrado",
   "wrongPasswordError": "Contraseña incorrecta",
   "required": "Requerido",

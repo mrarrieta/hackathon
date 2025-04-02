@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icons/font_awesome_flutter.dart';
 import 'package:locale/l10n/core_localizations_extensions.dart';
 import 'package:login/data/login_view_model.dart';
 import 'package:ui/dialogs/widgets/dialog_button.dart';
@@ -51,6 +52,9 @@ class _LoginFormState extends State<LoginForm> {
       key: _formKey,
       child: Column(
         children: [
+          const SizedBox(height: 20),
+          Icon(FontAwesomeIcons.userAstronaut, size: 150, color: Theme.of(context).primaryColor),
+          const SizedBox(height: 30),
           Padding(padding: const EdgeInsets.symmetric(horizontal: 15), child: CustomInput(
             label: context.l10n.email,
             onSaved: (value) => widget.loginViewModel.name = value ?? '',
@@ -67,8 +71,9 @@ class _LoginFormState extends State<LoginForm> {
           DialogButton(context.l10n.login, Theme.of(context).primaryColor, (_) => _submit.call()),
           const SizedBox(height: 15),
           DialogButton(context.l10n.signupPageTitle, Theme.of(context).primaryColor, (_) => widget.goToSignup.call()),
-          const SizedBox(height: 15),
-          DialogButton("bypass login", Theme.of(context).primaryColor, (_) => widget.onSuccess.call()),
+          const Spacer(flex: 4),
+          DialogButton(context.l10n.skipLogin, Theme.of(context).primaryColor, (_) => widget.onSuccess.call()),
+          const SizedBox(height: 20),
         ],
       ),
     );
