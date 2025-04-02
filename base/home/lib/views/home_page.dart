@@ -12,7 +12,6 @@ class HomePage extends StatelessWidget {
     required this.recordValidatorProvider,
     required this.goToLogin,
     required this.goToProfile,
-    required this.startCaptureFlow,
     super.key
   });
 
@@ -20,7 +19,6 @@ class HomePage extends StatelessWidget {
   final RecordValidatorProvider recordValidatorProvider;
   final Function() goToLogin;
   final Function() goToProfile;
-  final Function() startCaptureFlow;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +35,6 @@ class HomePage extends StatelessWidget {
                   recordRepository: recordRepository,
                   goToLogin: goToLogin,
                   goToProfile: goToProfile,
-                  startCaptureFlow: startCaptureFlow,
                 )
             )
         ),

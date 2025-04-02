@@ -19,7 +19,6 @@ class HomeContent extends StatefulWidget {
     required this.recordValidatorProvider,
     required this.goToLogin,
     required this.goToProfile,
-    required this.startCaptureFlow,
     super.key,
   });
 
@@ -27,7 +26,6 @@ class HomeContent extends StatefulWidget {
   final RecordValidatorProvider recordValidatorProvider;
   final Function() goToLogin;
   final Function() goToProfile;
-  final Function() startCaptureFlow;
 
   @override
   State<StatefulWidget> createState() => _HomeContentState();

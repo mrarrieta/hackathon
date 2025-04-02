@@ -48,7 +48,6 @@ class Routes {
             recordValidatorProvider: RecordValidatorProvider(context.l10n, DateTools()),
             goToLogin: () => context.go('/login'),
             goToProfile: () => context.go('/profile'),
-            startCaptureFlow: () => context.go('/capture'),
           ),
         ),
       ),
