@@ -6,7 +6,7 @@ import 'package:home/views/home_page.dart';
 import 'package:locale/l10n/core_localizations_extensions.dart';
 import 'package:login/views/login_page.dart';
 import 'package:profile/views/profile_page.dart';
-import 'package:signup/views/signup_screen.dart';
+import 'package:signup/views/signup_page.dart';
 import 'package:splash/views/splash_page.dart';
 
 class Routes {
@@ -25,8 +25,10 @@ class Routes {
       GoRoute(
         path: '/signup',
         pageBuilder: (context, __) => NoTransitionPage(
-          child: SignupScreen(
-                  () => context.go('/login')
+          child: SignupPage(
+                  goToLogin: () => context.go('/login'),
+                  onSuccess: () => context.go('/login'),
+                  signupViewModel: InstanceProvider.signupViewModel,
           ),
         ),
       ),
