@@ -31,7 +31,7 @@ class _SplashPageState extends State<SplashPage> {
         .onError((_,error) {
           debugPrintStack(stackTrace: error);
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(error.toString())));
+              .showSnackBar(SnackBar(content: Text(context.l10n.splashError)));
         });
     Future.delayed(const Duration(seconds: 6), () {
       widget.onComplete.call();
