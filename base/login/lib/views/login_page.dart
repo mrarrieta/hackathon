@@ -38,6 +38,11 @@ class LoginPage extends StatelessWidget {
                         context,
                       ).showSnackBar(SnackBar(content: Text(result)));
                     }
+                  }).onError((_, error) {
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(SnackBar(content: Text(context.l10n.loginError)));
+                  }).whenComplete(() {
                   });
                 },
                 skipLogin: onSuccess,
