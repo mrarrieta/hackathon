@@ -33,7 +33,7 @@ class Routes {
           child: SignupPage(
                   goToLogin: () => context.go('/login'),
                   onSuccess: () => context.go('/login'),
-                  signupViewModel: InstanceProvider.signupViewModel,
+                  signupClient: InstanceProvider.signupClient,
           ),
         ),
       ),
