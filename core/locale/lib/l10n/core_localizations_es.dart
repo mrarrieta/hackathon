@@ -119,4 +119,29 @@ class CoreLocalizationsEs extends CoreLocalizations {
 
   @override
   String get networkFailure => 'Revisa tu conexión a internet e intenta de nuevo';
+
+  @override
+  String get signup => 'Registrarse';
+
+  @override
+  String get userAlreadyExists => 'Este usuario ya existe';
+
+  @override
+  String get signupSuccessful => 'Registro exitoso';
+
+  @override
+  String get signupError => 'Ocurrió un error al registrarse';
+
+  @override
+  String get backToLogin => 'Volver al inicio';
+
+  @override
+  String get name => 'Nombre';
+
+  @override
+  String get lastname => 'Apellido';
+
+  @override
+  String get selectImage => 'Seleccionar imagen';
+
 }
