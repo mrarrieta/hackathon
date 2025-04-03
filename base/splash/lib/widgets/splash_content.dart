@@ -11,10 +11,6 @@ class SplashContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(state.error != null) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.splashError)));
-      debugPrint(state.error);
-    }
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
