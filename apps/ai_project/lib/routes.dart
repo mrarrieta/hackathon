@@ -1,4 +1,5 @@
 import 'package:ai_project/instance_provider.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:home/tools/date_tools.dart';
 import 'package:home/tools/record_validator.dart';
@@ -6,7 +7,7 @@ import 'package:home/views/home_page.dart';
 import 'package:locale/l10n/core_localizations_extensions.dart';
 import 'package:login/views/login_page.dart';
 import 'package:profile/views/profile_page.dart';
-import 'package:signup/views/signup_screen.dart';
+import 'package:signup/views/signup_page.dart';
 import 'package:splash/views/splash_page.dart';
 
 class Routes {
@@ -25,8 +26,10 @@ class Routes {
       GoRoute(
         path: '/signup',
         pageBuilder: (context, __) => NoTransitionPage(
-          child: SignupScreen(
-                  () => context.go('/login')
+          child: SignupPage(
+            signupViewModel: InstanceProvider.signupViewModel,
+            goToLogin: () => context.go('/login'),
+            onSuccess: () {  },
           ),
         ),
       ),
@@ -34,7 +37,7 @@ class Routes {
         path: '/login',
         pageBuilder: (context, __) => NoTransitionPage(
           child: LoginPage(
-            loginViewModel: InstanceProvider.loginViewmodel,
+            loginClient: InstanceProvider.loginClient,
             onSuccess: () => context.go('/home'),
             goToSignup: () => context.go('/signup'),
           ),
