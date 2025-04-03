@@ -43,7 +43,7 @@ class AddRecordDialogState extends State<AddRecordDialog> {
 
   getAmountController() {
     amountController ??= TextEditingController(
-        text: widget.initialRecord.getAmount() == 0.0 ? "0.0" : FixedValues.currency
+        text: widget.initialRecord.getAmount() == 0.0 ? "" : FixedValues.currency
             .format(widget.initialRecord.getAmount()));
     return amountController;
   }
@@ -211,6 +211,7 @@ class AddRecordDialogState extends State<AddRecordDialog> {
           TextInputType.datetime,
           widget.recordValidatorProvider.validateTime,
           icon: Icons.calendar_today,
+          label: context.l10n.date,
           style: 1,
         )
     );
@@ -234,7 +235,7 @@ class AddRecordDialogState extends State<AddRecordDialog> {
           TextInputType.text,
           widget.recordValidatorProvider.validateDescription,
           icon: Icons.drive_file_rename_outline,
-          hint: context.l10n.description,
+          label: context.l10n.description,
           style: 1,
         ),
       ),
@@ -274,7 +275,7 @@ class AddRecordDialogState extends State<AddRecordDialog> {
                         onNewAmount
                     ),
                 icon: Icons.attach_money,
-                hint: context.l10n.amount,
+                label: context.l10n.amount,
                 style: 1,
               )
           )
