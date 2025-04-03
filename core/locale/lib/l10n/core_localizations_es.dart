@@ -10,6 +10,30 @@ class CoreLocalizationsEs extends CoreLocalizations {
   String get signupPageTitle => 'Registrarse';
 
   @override
+  String get signup => 'Registrarse';
+
+  @override
+  String get userAlreadyExists => 'Este usuario ya existe';
+
+  @override
+  String get signupSuccessful => 'Registro exitoso';
+
+  @override
+  String get signupError => 'Ocurrió un error al registrarse';
+
+  @override
+  String get backToLogin => 'Volver al inicio';
+
+  @override
+  String get name => 'Nombre';
+
+  @override
+  String get lastname => 'Apellido';
+
+  @override
+  String get selectImage => 'Seleccionar imagen';
+
+  @override
   String get splashError => 'Error al cargar la información';
 
   @override
@@ -97,6 +121,9 @@ class CoreLocalizationsEs extends CoreLocalizations {
   String get invalidDate => 'Invalid Date';
 
   @override
+  String get yearOfBirth => 'Año de nacimiento';
+
+  @override
   String get yes => 'Si';
 
   @override
@@ -119,29 +146,4 @@ class CoreLocalizationsEs extends CoreLocalizations {
 
   @override
   String get networkFailure => 'Revisa tu conexión a internet e intenta de nuevo';
-
-  @override
-  String get signup => 'Registrarse';
-
-  @override
-  String get userAlreadyExists => 'Este usuario ya existe';
-
-  @override
-  String get signupSuccessful => 'Registro exitoso';
-
-  @override
-  String get signupError => 'Ocurrió un error al registrarse';
-
-  @override
-  String get backToLogin => 'Volver al inicio';
-
-  @override
-  String get name => 'Nombre';
-
-  @override
-  String get lastname => 'Apellido';
-
-  @override
-  String get selectImage => 'Seleccionar imagen';
-
 }

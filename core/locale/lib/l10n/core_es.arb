@@ -8,7 +8,7 @@
   "backToLogin": "Volver al inicio",
   "name": "Nombre",
   "lastname": "Apellido",
-  "selectImage": "Seleccionar imagen"
+  "selectImage": "Seleccionar imagen",
   "@_splash": {},
   "splashError": "Error al cargar la información",
   "@_login": {},
@@ -41,6 +41,8 @@
   "invalidDescription": "Descripción Invalida",
   "invalidNumber": "Numero Invalido",
   "invalidDate": "Invalid Date",
+  "@_profile": {},
+  "yearOfBirth": "Año de nacimiento",
   "@_other": {},
   "yes": "Si",
   "no": "No",
