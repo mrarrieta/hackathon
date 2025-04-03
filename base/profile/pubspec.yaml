@@ -10,16 +10,12 @@ dependencies:
   flutter:
     sdk: flutter
   intl: any
-
   ui:
     path: ../../core/ui
-
   locale:
     path: ../../core/locale
-
   icons:
     path: ../../core/icons
-
   url_launcher: ^6.1.10
 
 dev_dependencies:

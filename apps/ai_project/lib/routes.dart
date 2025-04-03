@@ -5,12 +5,16 @@ import 'package:home/tools/date_tools.dart';
 import 'package:home/tools/record_validator.dart';
 import 'package:home/views/home_page.dart';
 import 'package:locale/l10n/core_localizations_extensions.dart';
+import 'package:login/data/login_api.dart';
 import 'package:login/views/login_page.dart';
+import 'package:profile/data/profile_model.dart';
 import 'package:profile/views/profile_page.dart';
 import 'package:signup/views/signup_page.dart';
 import 'package:splash/views/splash_page.dart';
 
 class Routes {
+
+  static LoginResponse? loginResponse;
 
   static final router = GoRouter(
     routes: [
@@ -38,7 +42,10 @@ class Routes {
         pageBuilder: (context, __) => NoTransitionPage(
           child: LoginPage(
             loginClient: InstanceProvider.loginClient,
-            onSuccess: () => context.go('/home'),
+            onSuccess: (response) {
+              loginResponse = response;
+              context.go('/home');
+            },
             goToSignup: () => context.go('/signup'),
           ),
         ),
@@ -58,8 +65,16 @@ class Routes {
         path: '/profile',
         pageBuilder: (context, __) => NoTransitionPage(
           child: ProfilePage(
-                () => context.go('/login'),
-                () => context.go('/home'),
+            profileModel: ProfileModel(
+                name: loginResponse?.name ?? "",
+                lastname: loginResponse?.lastname ?? "",
+                description: loginResponse?.description ?? "",
+                birthDate: loginResponse?.birthdate ?? "",
+                imageBase64: loginResponse?.image
+                    ?.replaceAll("\n", "").replaceAll(" ", "") ?? "",
+            ),
+            goToLogin: () => context.go('/login'),
+            goToHome: () => context.go('/home'),
           ),
         ),
       ),

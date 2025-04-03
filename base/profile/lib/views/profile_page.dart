@@ -6,8 +6,14 @@ import '../data/profile_model.dart';
 import '../widgets/profile_card.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage(this.goToLogin, this.goToHome, {super.key});
+  const ProfilePage({
+    required this.profileModel,
+    required this.goToLogin,
+    required this.goToHome,
+    super.key,
+  });
 
+  final ProfileModel profileModel;
   final Function() goToLogin;
   final Function() goToHome;
 
@@ -15,19 +21,16 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final dummyProfile = ProfileModel(
-      name: "Paco",
-      lastname: "Gomez",
-      description: "Amante de la tecnología y explorador del tiempo.",
-      birthYear: "1997",
-      imageBase64: null,
-    );
-
     return Scaffold(
         appBar: AppBar(title: Text(context.l10n.profile)),
         body: SafeArea(
-          child: ProfileCard(profile: dummyProfile),
-        ),
+          child: Padding(padding: EdgeInsets.symmetric(horizontal: 6),child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ProfileCard(profile: profileModel),
+            ],
+          ),
+        )),
         bottomNavigationBar: AppBottomSheet(
             goToHome: goToHome,
             goToProfile: null,
