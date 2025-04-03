@@ -17,7 +17,7 @@ class Routes {
         path: '/',
         pageBuilder: (context, __) => NoTransitionPage(
             child: SplashPage(
-                InstanceProvider.splashViewModel,
+                InstanceProvider.splashClient,
                 () => context.replace('/login')
             )
         ),

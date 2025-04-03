@@ -2,16 +2,19 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:locale/l10n/core_localizations_extensions.dart';
-
-import '../data/splash_api.dart';
+import 'package:splash/bloc/splash_state.dart';
 
 class SplashContent extends StatelessWidget {
-  const SplashContent(this._splashResponse, {super.key});
+  const SplashContent(this.state, {super.key});
 
-  final SplashResponse? _splashResponse;
+  final SplashState state;
 
   @override
   Widget build(BuildContext context) {
+    if(state.error != null) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(context.l10n.splashError)));
+      debugPrint(state.error);
+    }
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Column(
@@ -19,21 +22,24 @@ class SplashContent extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(flex: 1),
-            if(_splashResponse == null) const Row(
+            if(state.isLoading) const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [SizedBox(width: 30, height: 30, child: CircularProgressIndicator())]
+                children: [
+                  SizedBox(
+                      width: 30, height: 30, child: CircularProgressIndicator())
+                ]
             ),
-            if(_splashResponse != null) Column(children: [
+            if(state.isSuccess) Column(children: [
               Image.memory(
-                  base64Decode(
-                      _splashResponse!.image!
-                          .replaceAll("\n", "")
-                          .replaceAll(" ", "")
-                  ),
+                base64Decode(
+                    state.image!
+                        .replaceAll("\n", "")
+                        .replaceAll(" ", "")
+                ),
               ),
               const SizedBox(height: 30),
               Text(
-                _splashResponse!.randomSentence ?? context.l10n.splashError,
+                state.message ?? context.l10n.splashError,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 30,

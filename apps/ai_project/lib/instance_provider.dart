@@ -4,7 +4,6 @@ import 'package:home/tools/date_tools.dart';
 import 'package:login/data/login_api.dart';
 import 'package:login/data/login_view_model.dart';
 import 'package:splash/data/splash_api.dart';
-import 'package:splash/data/splash_view_model.dart';
 
 class InstanceProvider {
   static final DateTools _dateTools = DateTools();
@@ -12,6 +11,5 @@ class InstanceProvider {
   static final LoginClient _loginClient = LoginClient(_dio);
   static final SplashClient splashClient = SplashClient(_dio);
   static final LoginViewModel loginViewmodel = LoginViewModel(_loginClient);
-  static final SplashViewModel splashViewModel = SplashViewModel(splashClient);
   static final RecordRepository recordRepository = RecordRepository(_dateTools);
 }

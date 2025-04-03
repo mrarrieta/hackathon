@@ -1,52 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:locale/l10n/core_localizations_extensions.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:splash/bloc/splash_state.dart';
 import 'package:splash/data/splash_api.dart';
-import 'package:splash/data/splash_view_model.dart';
 import 'package:splash/widgets/splash_content.dart';
-import 'package:ui/resources/assets.dart';
 
-class SplashPage extends StatefulWidget {
-  const SplashPage(this.splashViewModel, this.onComplete, {super.key});
+class SplashPage extends StatelessWidget {
+  const SplashPage(this.splashClient, this.onComplete, {super.key});
 
-  final SplashViewModel splashViewModel;
+  final SplashClient splashClient;
   final Function() onComplete;
 
   @override
-  State<StatefulWidget> createState() => _SplashPageState();
-
-}
-
-class _SplashPageState extends State<SplashPage> {
-
-  SplashResponse? _splashResponse;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.splashViewModel.getSplash()
-        .then((value) {
-          _splashResponse = value;
-          setState(() {});
-        })
-        .onError((_,error) {
-          debugPrintStack(stackTrace: error);
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(context.l10n.splashError)));
-        });
-    Future.delayed(const Duration(seconds: 6), () {
-      widget.onComplete.call();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-            child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SplashContent(_splashResponse),
+    return BlocProvider(
+        create: (context) {
+          Future.delayed(const Duration(seconds: 6), () => onComplete.call());
+          return SplashCubit(splashClient)..getSplashData();
+        },
+        child: BlocBuilder<SplashCubit,SplashState>(
+            builder: (context,state) => Scaffold(
+                body: SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: SplashContent(state),
+                    )
+                )
             )
-        )
+        ),
     );
   }
 }

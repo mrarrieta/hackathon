@@ -11,7 +11,6 @@ dependencies:
     sdk: flutter
   go_router: ^7.0.0
   dio: ^5.3.3
-
   ui:
     path: ../../core/ui
   locale:
