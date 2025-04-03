@@ -5,12 +5,12 @@ import 'package:login/data/login_api.dart';
 class LoginState {
   LoginState({
     this.isLoading = false,
-    this.isSuccess = false,
+    this.loginResponse,
     this.loginError,
   });
 
   final bool isLoading;
-  final bool isSuccess;
+  final LoginResponse? loginResponse;
   final String? loginError;
 }
 
@@ -30,7 +30,7 @@ class LoginCubit extends Cubit<LoginState> {
         emit(LoginState(loginError: localization.noUserError));
         return;
       } else if (response.password == pass) {
-        emit(LoginState(isSuccess: true));
+        emit(LoginState(loginResponse: response));
         return;
       } else {
         emit(LoginState(loginError: localization.wrongPasswordError));

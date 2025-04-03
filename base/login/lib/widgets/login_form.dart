@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:icons/font_awesome_flutter.dart';
 import 'package:locale/l10n/core_localizations_extensions.dart';
-import 'package:login/bloc/LoginState.dart';
+import 'package:login/bloc/login_state.dart';
 import 'package:ui/dialogs/widgets/dialog_button.dart';
 import 'package:ui/widgets/input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

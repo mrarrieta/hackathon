@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:locale/l10n/core_localizations_extensions.dart';
-import 'package:login/bloc/LoginState.dart';
+import 'package:login/bloc/login_state.dart';
 import 'package:login/data/login_api.dart';
 
 import '../widgets/login_form.dart';
@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
   });
 
   final LoginClient loginClient;
-  final Function() onSuccess;
+  final Function(LoginResponse?) onSuccess;
   final Function() goToSignup;
 
   @override
@@ -24,10 +24,10 @@ class LoginPage extends StatelessWidget {
       create: (_) => LoginCubit(loginClient, context.l10n),
       child: BlocConsumer<LoginCubit,LoginState>(
           listener: (context, state) {
-            if (state.isSuccess) {
+            if (state.loginResponse != null) {
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(context.l10n.loginSuccessful)));
-              onSuccess.call();
+              onSuccess.call(state.loginResponse!);
             } else if (state.loginError != null) {
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBar(content: Text(state.loginError!)));
@@ -39,7 +39,7 @@ class LoginPage extends StatelessWidget {
                 child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: LoginForm(
-                      skipLogin: onSuccess,
+                      skipLogin: () => onSuccess.call(null),
                       goToSignup: goToSignup,
                     )
                 )
