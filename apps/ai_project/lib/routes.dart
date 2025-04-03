@@ -27,9 +27,9 @@ class Routes {
         path: '/signup',
         pageBuilder: (context, __) => NoTransitionPage(
           child: SignupPage(
-            signupViewModel: InstanceProvider.signupViewModel,
-            goToLogin: () => context.go('/login'),
-            onSuccess: () {  },
+                  goToLogin: () => context.go('/login'),
+                  onSuccess: () => context.go('/login'),
+                  signupViewModel: InstanceProvider.signupViewModel,
           ),
         ),
       ),

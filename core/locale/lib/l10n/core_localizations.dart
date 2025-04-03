@@ -320,6 +320,47 @@ abstract class CoreLocalizations {
   /// In es, this message translates to:
   /// **'Revisa tu conexión a internet e intenta de nuevo'**
   String get networkFailure;
+
+  /// No description provided for @signup.
+  /// In es, this message translates to:
+  /// **'Registrarse'**
+  String get signup;
+
+  /// No description provided for @userAlreadyExists.
+  /// In es, this message translates to:
+  /// **'Este usuario ya existe'**
+  String get userAlreadyExists;
+
+  /// No description provided for @signupSuccessful.
+  /// In es, this message translates to:
+  /// **'Registro exitoso'**
+  String get signupSuccessful;
+
+  /// No description provided for @signupError.
+  /// In es, this message translates to:
+  /// **'Ocurrió un error al registrarse'**
+  String get signupError;
+
+  /// No description provided for @backToLogin.
+  /// In es, this message translates to:
+  /// **'Volver al inicio'**
+  String get backToLogin;
+
+  /// No description provided for @name.
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get name;
+
+  /// No description provided for @lastname.
+  /// In es, this message translates to:
+  /// **'Apellido'**
+  String get lastname;
+
+  /// No description provided for @selectImage.
+  /// In es, this message translates to:
+  /// **'Seleccionar imagen'**
+  String get selectImage;
+
 }
 
 class _CoreLocalizationsDelegate extends LocalizationsDelegate<CoreLocalizations> {

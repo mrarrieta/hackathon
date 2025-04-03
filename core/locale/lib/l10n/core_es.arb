@@ -1,6 +1,14 @@
 {
   "@_signup": {},
   "signupPageTitle": "Registrarse",
+  "signup": "Registrarse",
+  "userAlreadyExists": "Este usuario ya existe",
+  "signupSuccessful": "Registro exitoso",
+  "signupError": "Ocurrió un error al registrarse",
+  "backToLogin": "Volver al inicio",
+  "name": "Nombre",
+  "lastname": "Apellido",
+  "selectImage": "Seleccionar imagen"
   "@_splash": {},
   "splashError": "Error al cargar la información",
   "@_login": {},
