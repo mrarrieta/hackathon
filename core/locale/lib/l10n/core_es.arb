@@ -13,6 +13,8 @@
   "noUserError": "Usuario no encontrado",
   "wrongPasswordError": "Contraseña incorrecta",
   "required": "Requerido",
+  "loginError": "Error al iniciar sesión",
+  "date": "Fecha",
   "@_home": {},
   "homePageTitle": "Bienvenido",
   "home": "Inicio",

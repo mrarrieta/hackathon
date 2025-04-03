@@ -159,6 +159,18 @@ abstract class CoreLocalizations {
   /// **'Requerido'**
   String get required;
 
+  /// No description provided for @loginError.
+  ///
+  /// In es, this message translates to:
+  /// **'Error al iniciar sesión'**
+  String get loginError;
+
+  /// No description provided for @date.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha'**
+  String get date;
+
   /// No description provided for @homePageTitle.
   ///
   /// In es, this message translates to:
