@@ -9,8 +9,8 @@ class SignupViewModel {
   SignupResponse? response;
 
   Future<String?> signup(CoreLocalizations localization, SignupResponse newUser) async {
-    final existing = await signupClient.getUser(newUser.name ?? "");
-    if (existing != null) return localization.userAlreadyExists;
+    //final existing = await signupClient.getUser(newUser.name ?? "");
+    //if (existing != null) return localization.userAlreadyExists;
 
     try {
       await signupClient.createUser(newUser);
