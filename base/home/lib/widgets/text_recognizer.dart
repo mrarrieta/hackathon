@@ -99,10 +99,10 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
 
     String promptData = _text!.trim();
     String prompt = "given data from a purchase ticket retrieve the information";
-    debugPrint("Bard Prompt: $prompt");
-    debugPrint("Bard Input: $promptData");
+    debugPrint("Prompt: $prompt");
+    debugPrint("Input: $promptData");
     String fullPrompt = "$prompt $promptData";
-    debugPrint("Bard Prompt Size: ${fullPrompt.length}");
+    debugPrint("Prompt Size: ${fullPrompt.length}");
 
     // the system message that will be sent to the request.
     final systemMessage = OpenAIChatCompletionChoiceMessageModel(
@@ -185,8 +185,7 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
                 SizedBox(height: 20,),
               ],);
           } else {
-            return const Expanded(
-                child: Row(
+            return const Row(
                   children: [
                     Spacer(flex: 1),
                     Column(
@@ -199,7 +198,6 @@ class _TextRecognizerViewState extends State<TextRecognizerView> {
                     ),
                     Spacer(flex: 1),
                   ],
-                )
             );
           }
         });
